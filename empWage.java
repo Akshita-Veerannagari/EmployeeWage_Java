@@ -7,9 +7,17 @@ public class empWage
    int isPresent=1;
    Random rd = new Random();
    int randomCheck=rd.nextInt()%2;
+   int salary;
    if(isPresent == randomCheck)
-	System.out.println("Employee is present");
+   {
+	int empRatePerHr=20;
+	int empHrs=8;
+	salary=empHrs*empRatePerHr;
+   }
    else
-	System.out.println("Employee is absent");
+   {
+	salary=0;
+   }
+   System.out.println("Salary of the employee is: " +salary);
  }
 }
