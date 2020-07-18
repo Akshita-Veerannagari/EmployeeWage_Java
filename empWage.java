@@ -4,20 +4,25 @@ public class empWage
  public static void main(String args[])
  {
    System.out.println("Welcome to Employee Wage Computation");
-   int isPresent=1;
+   int isPartTime=1;
+   int isFullTime=2;
+   int empRatePerHr=20;
    Random rd = new Random();
-   int randomCheck=rd.nextInt()%2;
-   int salary;
-   if(isPresent == randomCheck)
+   int randomCheck=rd.nextInt()%3;
+   int salary, empHrs;
+   if(isFullTime == randomCheck)
    {
-	int empRatePerHr=20;
-	int empHrs=8;
-	salary=empHrs*empRatePerHr;
+	empHrs=8;
+   }
+   else if(isPartTime == randomCheck)
+   {
+	empHrs=4;
    }
    else
    {
-	salary=0;
+	empHrs=0;
    }
+   salary=empHrs*empRatePerHr;
    System.out.println("Salary of the employee is: " +salary);
  }
 }
