@@ -5,22 +5,28 @@ public class empWage
  {
    System.out.println("Welcome to Employee Wage Computation");
    int empRatePerHr=20;
+   int totalSalary=0;
+   int numWorkingDays=20;
    int salary=0,empHrs;
-   Random rd = new Random();
-   int randomCheck=rd.nextInt()%3;
-   switch(randomCheck)
+   for(int i=1;i<=numWorkingDays;i++)
    {
-	case 1:	 
-	   empHrs=4; 
-	   break;
-	case 2: 
-	   empHrs=8; 
-	   break;
-        default: 
-	   empHrs=0; 
- 	   break;
-    }
-    salary=empHrs*empRatePerHr;
-    System.out.println("Salary of the employee is: " +salary);
+	   Random rd = new Random();
+	   int randomCheck=rd.nextInt()%3;
+	   switch(randomCheck)
+	   {
+		case 1:
+		  empHrs=4; 
+		  break;
+		case 2: 
+		   empHrs=8; 
+	           break;
+		default: 
+		   empHrs=0; 
+		   break;
+   	   }
+	   salary=empHrs*empRatePerHr;
+	   totalSalary+=salary;
+   }
+   System.out.println("Salary of the employee is: " +totalSalary);
  }
 }
