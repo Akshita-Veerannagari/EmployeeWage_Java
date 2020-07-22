@@ -69,25 +69,25 @@ public class empWage
         return "Total EmployeeWage for Company: "+companyName+" is "+totalWage;
     }
 
- public static void main(String args[])
- {
-   System.out.println("Welcome to Employee Wage Computation");
-   Scanner sc = new Scanner(System.in);
-   System.out.println("Enter the no. of companies:");
-   int n = sc.nextInt();
-   for(int i=0;i<n;i++)
-   {
-     System.out.println("Enter the name of the company:");
-     String name=sc.next();
-     System.out.println("Enter employee rate per hour: ");
-     int rate=sc.nextInt();
-     System.out.println("Enter total working days: ");
-     int workingDays=sc.nextInt();
-     System.out.println("Enter total working hours: ");
-     int workingHours=sc.nextInt();
-     empWage company = new empWage(name,rate,workingDays,workingHours);
-     company.calcWage();
-     System.out.println(company);
-   }
- }
+    public static void main(String args[])
+    {
+   	System.out.println("Welcome to Employee Wage Computation");
+	   Scanner sc = new Scanner(System.in);
+	   System.out.println("Enter the no. of companies:");
+	   int n = sc.nextInt();
+	   for(int i=0;i<n;i++)
+	   {
+	     System.out.println("Enter the name of the company:");
+	     String name=sc.next();
+	     System.out.println("Enter employee rate per hour: ");
+	     int rate=sc.nextInt();
+	     System.out.println("Enter total working days: ");
+	     int workingDays=sc.nextInt();
+	     System.out.println("Enter total working hours: ");
+	     int workingHours=sc.nextInt();
+	     empWage company = new empWage(name,rate,workingDays,workingHours);
+	     company.calcWage();
+	     System.out.println(company);
+	   }
+     }
 }
