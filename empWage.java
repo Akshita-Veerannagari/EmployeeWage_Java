@@ -5,18 +5,19 @@ public class empWage implements employeeInterface
     static final int isPartTime=1;
     
     static int noOfComp=0;
-    companyEmpWage employee [];
+    ArrayList<companyEmpWage> employee;
     int totalEmpHours=0;
     
 
     empWage(int n)
     {
-	employee = new companyEmpWage[n];
+	employee = new ArrayList<>();
+	noOfComp=n;
     }
 
     public void addCompany(String name, int rate, int workingHrs, int workingDays)
     {
-	employee[noOfComp++]=new companyEmpWage(name,rate,workingHrs,workingDays);
+	employee.add(new companyEmpWage(name,rate,workingHrs,workingDays));
     }
     public int getWorkingHours(int check)
     {
@@ -47,8 +48,8 @@ public class empWage implements employeeInterface
     {
 	for(int i=0;i<noOfComp;i++)
 	{
-		employee[i].setTotalEmpWage(calcWage(employee[i]));
-		System.out.println(employee[i]);
+		employee.get(i).setTotalEmpWage(calcWage(employee.get(i)));
+		System.out.println(employee.get(i));
 	}
     }
     public int calcWage(companyEmpWage employee)
