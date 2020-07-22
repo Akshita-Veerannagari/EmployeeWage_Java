@@ -1,25 +1,23 @@
 import java.util.*;
 public class empWage
 {
-    int totalWage;
     static final int isFullTime=2;
     static final int isPartTime=1;
-    static final int MAX_HRS_IN_MONTH=100;
-    int empRatePerHour;
-    int numWorkingdays;
-    int totalEmpHours;
-    String companyName;
-    int totalWorkingDays=0;
+    
+    static int noOfComp=0;
+    companyEmpWage employee [];
+    int totalEmpHours=0;
+    
 
-    empWage(String companyName, int empRatePerHour, int numWorkingDays,int totalEmpHours)
+    empWage(int n)
     {
-        this.companyName=companyName;
-        this.empRatePerHour=empRatePerHour;
-        this.numWorkingdays=numWorkingDays;
-        this.totalEmpHours=totalEmpHours;
-        this.totalWage=0;
+	employee = new companyEmpWage[n];
     }
 
+    public void addCompany(String name, int rate, int workingHrs, int workingDays)
+    {
+	employee[noOfComp++]=new companyEmpWage(name,rate,workingHrs,workingDays);
+    }
     public int getWorkingHours(int check)
     {
         int workHours;
@@ -45,36 +43,41 @@ public class empWage
          return randomCheck;
     }
 
-
-    public void calcWage()
+    public void computeWage()
     {
- 	      System.out.println("Company Name: "+companyName);
-        int attendance=0,workHours=0,dailySalary=0,totalSalary=0;
+	for(int i=0;i<noOfComp;i++)
+	{
+		employee[i].setTotalEmpWage(calcWage(employee[i]));
+		System.out.println(employee[i]);
+	}
+    }
+    public int calcWage(companyEmpWage employee)
+    {
+ 	System.out.println("Company Name: "+employee.companyName);
+        int attendance=0,workHours=0,dailySalary=0,totalSalary=0,totalWorkingDays=0;
         System.out.println("Day\t Daily Hours\t Total Hours\t Daily Wage\t Total Wage");
-        while((totalEmpHours< MAX_HRS_IN_MONTH) && (totalWorkingDays < numWorkingdays))
+        while((totalEmpHours< employee.MAX_HRS_IN_MONTH) && (totalWorkingDays < employee.numWorkingdays))
         {
-           totalWorkingDays++;
+            totalWorkingDays++;
             attendance=isPresent();
             workHours=getWorkingHours(attendance);
             totalEmpHours+=workHours;
-            dailySalary=workHours*empRatePerHour;
-            totalSalary=totalEmpHours*empRatePerHour;
+            dailySalary=workHours*employee.empRatePerHour;
+            totalSalary=totalEmpHours*employee.empRatePerHour;
             System.out.println(totalWorkingDays+"\t\t"+workHours+"\t\t"+totalEmpHours+"\t\t"+dailySalary+"\t\t"+totalSalary);
         }
-        totalWage=totalSalary;
+        return totalSalary;
     }
 
-    public String toString()
-    {
-        return "Total EmployeeWage for Company: "+companyName+" is "+totalWage;
-    }
+ 
 
     public static void main(String args[])
     {
-   	System.out.println("Welcome to Employee Wage Computation");
+   	   System.out.println("Welcome to Employee Wage Computation");
 	   Scanner sc = new Scanner(System.in);
 	   System.out.println("Enter the no. of companies:");
 	   int n = sc.nextInt();
+           empWage emp = new empWage(n);
 	   for(int i=0;i<n;i++)
 	   {
 	     System.out.println("Enter the name of the company:");
@@ -85,9 +88,11 @@ public class empWage
 	     int workingDays=sc.nextInt();
 	     System.out.println("Enter total working hours: ");
 	     int workingHours=sc.nextInt();
-	     empWage company = new empWage(name,rate,workingDays,workingHours);
-	     company.calcWage();
-	     System.out.println(company);
+	     //empWage company = new empWage(name,rate,workingDays,workingHours);
+	     //company.calcWage();
+             emp.addCompany(name,rate,workingDays,workingHours);
+	     //System.out.println(company);
 	   }
+	   emp.computeWage();
      }
 }
