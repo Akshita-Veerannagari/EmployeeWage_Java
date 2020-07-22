@@ -1,5 +1,5 @@
 import java.util.*;
-public class empWage
+public class empWage implements employeeInterface
 {
     static final int isFullTime=2;
     static final int isPartTime=1;
