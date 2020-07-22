@@ -10,6 +10,7 @@ public class empWage
     int totalEmpHours;
     String companyName;
     int totalWorkingDays=0;
+
     empWage(String companyName, int empRatePerHour, int numWorkingDays,int totalEmpHours)
     {
         this.companyName=companyName;
@@ -36,15 +37,18 @@ public class empWage
         }
         return workHours;
     }
+
     public int isPresent()
     {
          Random rd = new Random();
          int randomCheck=rd.nextInt()%3;
          return randomCheck;
     }
+
+
     public void calcWage()
     {
-        System.out.println("Company Name: "+companyName);
+ 	      System.out.println("Company Name: "+companyName);
         int attendance=0,workHours=0,dailySalary=0,totalSalary=0;
         System.out.println("Day\t Daily Hours\t Total Hours\t Daily Wage\t Total Wage");
         while((totalEmpHours< MAX_HRS_IN_MONTH) && (totalWorkingDays < numWorkingdays))
@@ -87,6 +91,3 @@ public class empWage
    }
  }
 }
-
-
-
