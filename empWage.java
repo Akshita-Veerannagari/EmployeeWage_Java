@@ -5,11 +5,12 @@ public class empWage
     static final int isFullTime=2;
     static final int isPartTime=1;
     static final int MAX_HRS_IN_MONTH=100;
-    static int empRatePerHour;
-    static int numWorkingdays;
-    static int totalEmpHours;
-    static String companyName;
-    static int totalWorkingDays=0;
+    int empRatePerHour;
+    int numWorkingdays;
+    int totalEmpHours;
+    String companyName;
+    int totalWorkingDays=0;
+
     empWage(String companyName, int empRatePerHour, int numWorkingDays,int totalEmpHours)
     {
         this.companyName=companyName;
@@ -18,7 +19,7 @@ public class empWage
         this.totalEmpHours=totalEmpHours;
     }
 
-    public static int getWorkingHours(int check)
+    public int getWorkingHours(int check)
     {
         int workHours;
         switch(check)
@@ -35,15 +36,17 @@ public class empWage
         }
         return workHours;
     }
-    public static int isPresent()
+
+    public int isPresent()
     {
          Random rd = new Random();
          int randomCheck=rd.nextInt()%3;
          return randomCheck;
     }
-    public static void calcWage()
+
+    public void calcWage()
     {
- System.out.println("Company Name: "+companyName);
+ 	System.out.println("Company Name: "+companyName);
         int attendance=0,workHours=0,dailySalary=0,totalSalary=0;
         System.out.println("Day\t Daily Hours\t Total Hours\t Daily Wage\t Total Wage");
         while((totalEmpHours< MAX_HRS_IN_MONTH) && (totalWorkingDays < numWorkingdays))
@@ -65,7 +68,6 @@ public class empWage
    Scanner sc = new Scanner(System.in);
    System.out.println("Enter the no. of companies:");
    int n = sc.nextInt();
-   empWage employees[] = new empWage[n];
    for(int i=0;i<n;i++)
    {
      System.out.println("Enter the name of the company:");
@@ -76,8 +78,8 @@ public class empWage
      int workingDays=sc.nextInt();
      System.out.println("Enter total working hours: ");
      int workingHours=sc.nextInt();
-     employees[i]= new empWage(name,rate,workingDays,workingHours);
-     employees[i].calcWage();
+     empWage company = new empWage(name,rate,workingDays,workingHours);
+     company.calcWage();
    }
  }
 }
