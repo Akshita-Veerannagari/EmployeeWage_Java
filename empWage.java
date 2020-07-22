@@ -6,7 +6,7 @@ public class empWage implements employeeInterface
     
     static int noOfComp=0;
     ArrayList<companyEmpWage> employee;
-    int totalEmpHours=0;
+    
     
 
     empWage(int n)
@@ -49,28 +49,36 @@ public class empWage implements employeeInterface
 	for(int i=0;i<noOfComp;i++)
 	{
 		employee.get(i).setTotalEmpWage(calcWage(employee.get(i)));
+		System.out.println("Company Name: "+employee.get(i).companyName);
+		System.out.println("Day\t Daily Hours\t Total Hours\t Daily Wage\t Total Wage");
+		employee.get(i).printDailyWage();
 		System.out.println(employee.get(i));
 	}
     }
     public int calcWage(companyEmpWage employee)
     {
- 	System.out.println("Company Name: "+employee.companyName);
-        int attendance=0,workHours=0,dailySalary=0,totalSalary=0,totalWorkingDays=0;
-        System.out.println("Day\t Daily Hours\t Total Hours\t Daily Wage\t Total Wage");
+ 	
+        int attendance=0,workHours=0,dailySalary=0,totalSalary=0,totalWorkingDays=0,totalEmpHours=0;
+        
         while((totalEmpHours< employee.MAX_HRS_IN_MONTH) && (totalWorkingDays < employee.numWorkingdays))
         {
+	    ArrayList<Integer> daily = new ArrayList<>();
             totalWorkingDays++;
             attendance=isPresent();
             workHours=getWorkingHours(attendance);
             totalEmpHours+=workHours;
             dailySalary=workHours*employee.empRatePerHour;
             totalSalary=totalEmpHours*employee.empRatePerHour;
-            System.out.println(totalWorkingDays+"\t\t"+workHours+"\t\t"+totalEmpHours+"\t\t"+dailySalary+"\t\t"+totalSalary);
+            daily.add(totalWorkingDays);
+    	    daily.add(workHours);
+	    daily.add(totalEmpHours);
+	    daily.add(dailySalary);
+	    daily.add(totalSalary);
+	    employee.dailyWage.add(daily);
+            //System.out.println(totalWorkingDays+"\t\t"+workHours+"\t\t"+totalEmpHours+"\t\t"+dailySalary+"\t\t"+totalSalary);
         }
         return totalSalary;
-    }
-
- 
+    } 
 
     public static void main(String args[])
     {
