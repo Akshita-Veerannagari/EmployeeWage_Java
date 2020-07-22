@@ -6,18 +6,21 @@ public class empWage implements employeeInterface
     
     static int noOfComp=0;
     ArrayList<companyEmpWage> employee;
-    
+    Map<String, companyEmpWage> employeeMap;
     
 
     empWage(int n)
     {
 	employee = new ArrayList<>();
+	employeeMap = new LinkedHashMap<>();
 	noOfComp=n;
     }
 
     public void addCompany(String name, int rate, int workingHrs, int workingDays)
     {
-	employee.add(new companyEmpWage(name,rate,workingHrs,workingDays));
+	companyEmpWage comp = new companyEmpWage(name,rate,workingHrs,workingDays);
+	employee.add(comp);
+	employeeMap.put(name,comp);
     }
     public int getWorkingHours(int check)
     {
@@ -80,6 +83,11 @@ public class empWage implements employeeInterface
         return totalSalary;
     } 
 
+    public void getTotalWageByCompanyName(String companyName)
+    {
+	System.out.println("Total Wage of Company "+companyName+" is "+employeeMap.get(companyName).totalWage);
+    }
+
     public static void main(String args[])
     {
    	   System.out.println("Welcome to Employee Wage Computation");
@@ -103,5 +111,17 @@ public class empWage implements employeeInterface
 	     //System.out.println(company);
 	   }
 	   emp.computeWage();
+	   String option="yes";
+	   while(option.equals("yes"))
+ 	   {
+		System.out.println("Enter the name of the company to find total Wage:");
+		String name=sc.next();
+		if(emp.employeeMap.containsKey(name))
+			emp.getTotalWageByCompanyName(name);
+		else
+			System.out.println("Company doesnt exist");
+		System.out.println("Do you want to continue yes/no?");
+		option=sc.next();
+	   }
      }
 }
